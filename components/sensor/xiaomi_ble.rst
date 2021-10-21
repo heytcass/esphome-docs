@@ -246,7 +246,15 @@ Hygro thermometer, square body, e-ink display, encrypted, broadcasts temperature
 
 ( MHO-C201 doesn't have BT )
 
-Configuration example:
+Similar to the LYWSD03MMC, there are the following possibilities to operate this sensor:
+
+1. Xiaomi stock firmware (requires a bindkey in order to decrypt the received data, see :ref:`obtaining_the_bindkey`)
+2. Device flashed with `PVVX MiThermometer <https://github.com/pvvx/ATC_MiThermometer>`__ custom firmware
+
+   - "Mi Like" advertisement (dummy bindkey required)
+   - "pvvx" custom advertisement (no bindkey required, only PVVX firmware)
+
+Configuration example for Xiaomi stock firmware:
 
 .. code-block:: yaml
 
@@ -260,6 +268,22 @@ Configuration example:
           name: "MHOC401 Humidity"
         battery_level:
           name: "MHOC401 Battery Level"
+
+Configuration example for PVVX MiThermometer firmware set to "Custom" advertisement:
+
+.. code-block:: yaml
+
+    sensor:
+      - platform: pvvx_mithermometer
+        mac_address: "A4:C1:38:B1:CD:7F"
+        temperature:
+          name: "PVVX Temperature"
+        humidity:
+          name: "PVVX Humidity"
+        battery_level:
+          name: "PVVX Battery-Level"
+        battery_voltage:
+          name: "PVVX Battery-Voltage"
 
 CGD1
 ****
